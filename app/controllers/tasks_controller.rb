@@ -30,6 +30,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+  end
+  
+
   
   private
   
