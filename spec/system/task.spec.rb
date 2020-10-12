@@ -39,12 +39,16 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
   describe '詳細表示機能' do
-    let(:task) { params( ) } 
+    # let(:task) { params( :name, :detail ) }
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
+        task = FactoryBot.create(:second_task)
+        # タスク一覧ページに遷移
+        visit tasks_path
         click_on 'Show'
-        vitit task_path
-        expect(page).to have_content 'task.name'
+        # @task = Task.find(params[:id])
+        visit task_path(task)
+        expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
         end
       end
   end
