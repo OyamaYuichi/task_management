@@ -32,6 +32,12 @@ class TasksController < ApplicationController
 
   def show
   end
+
+  def destroy
+    @task.destroy
+    redirect_to tasks_path, notice: 'Task was successfully destroyed.'
+  end
+  
   
 
   
