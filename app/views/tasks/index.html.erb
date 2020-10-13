@@ -16,7 +16,7 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.detail %></td>
-        <td><%= link_to t('view.show'), task %></td>
+        <td><%= link_to t('view.show'), task, class: "show"%></td>
         <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: t('view.destroy message') } %></td>
       </tr>
