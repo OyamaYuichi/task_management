@@ -1,5 +1,10 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
+  before do
+    FactoryBot.create(:task, name: 'task1')
+    FactoryBot.create(:second_task, name: 'task2')
+    FactoryBot.create(:third_task, name: 'task3')
+  end
 
   def show_btns(index)
     visit tasks_path
@@ -26,15 +31,25 @@ RSpec.describe 'タスク管理機能', type: :system do
       # 4. clickで登録されたはずの情報が、タスク詳細ページに表示されているかを確認する
       # （タスクが登録されたらタスク詳細画面に遷移されるという前提）
       # ここにタスク詳細ページに、テストコードで作成したデータがタスク詳細画面にhave_contentされているか（含まれているか）を確認（期待）するコードを書く
-        task = FactoryBot.create(:task, name: 'task1', detail: 'sometext')
-        visit task_path(task)
+        # task = FactoryBot.create(:task, name: 'task1', detail: 'sometext')
+        # visit task_path(task)
         expect(page).to have_content 'sometext'
+      end
+    end
+    context '終了期限でソートするボタンを押した場合' do
+      it '終了期限の降順で表示される' do
+        visit tasks_path
+        click_on '終了期限でソートする'
+        sleep 0.5
+        task_list = all('.date_row')
+        expect(task_list[0]).to have_content '2020-10-16'
+        expect(task_list[1]).to have_content '2020-10-15'
+        expect(task_list[2]).to have_content '2020-10-10'
+        # binding.irb
       end
     end
   end
 
-  let!(:task) {FactoryBot.create(:task, name: 'task1')}
-  let!(:second_task) {FactoryBot.create(:task, name: 'task2')}
   before do
     # 「一覧画面に遷移した場合」や「タスクが作成日時の降順に並んでいる場合」など、contextが実行されるタイミングで、before内のコードが実行される
     visit tasks_path
@@ -61,13 +76,13 @@ RSpec.describe 'タスク管理機能', type: :system do
         # # binding.irb
         # show_btns[0].click
         show_btns(0).click
-        expect(page).to  have_content 'task2'
+        expect(page).to  have_content 'task3'
         # click_link '戻る' #ページ遷移したため再び値の取得が必要
         # sleep 1
         # show_btns = all('.show')
         show_btns(1).click
         # show_btns[1].click
-        expect(page).to  have_content 'task1'
+        expect(page).to  have_content 'task2'
       end
     end
   end

@@ -209,6 +209,7 @@ ja:
   view:
     name: タスク名
     detail: タスク詳細
+    deadline: 終了期限
     show: 詳細
     edit: 編集
     destroy: 削除
