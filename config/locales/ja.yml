@@ -17,7 +17,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -43,7 +43,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -205,11 +205,12 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  
+
   view:
     name: タスク名
     detail: タスク詳細
     deadline: 終了期限
+    status: ステータス
     show: 詳細
     edit: 編集
     destroy: 削除
@@ -217,3 +218,4 @@ ja:
     edit task: タスクを編集
     back: 戻る
     destroy message: 削除してもよろしいですか？
+    error number: 件のエラーがあります。
