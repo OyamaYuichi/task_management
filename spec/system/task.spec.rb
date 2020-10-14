@@ -13,6 +13,39 @@ RSpec.describe 'タスク管理機能', type: :system do
     show_btns[index]
   end
 
+  describe '検索機能' do
+    context 'タイトルであいまい検索をした場合' do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+        visit tasks_path
+        # タスクの検索欄に検索ワードを入力する (例: task)
+        fill_in "タスク名",	with: "task1"
+        # 検索ボタンを押す
+        click_on '検索'
+        expect(page).to have_content 'task1'
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it "ステータスに完全一致するタスクが絞り込まれる" do
+        # ここに実装する
+        visit tasks_path
+        # プルダウンを選択する「select」について調べてみること
+        select '完了', from: 'ステータス'
+        click_on '検索'
+        sleep 1
+        expect(page).to have_content '2020-10-10'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+        # ここに実装する
+        visit tasks_path
+        fill_in "タスク名",	with: "task"
+        select '完了', from: 'ステータス'
+        expect(page).to have_content '2020-10-10'
+      end
+    end
+  end
+
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
@@ -25,6 +58,8 @@ RSpec.describe 'タスク管理機能', type: :system do
       # ここに「タスク詳細」というラベル名の入力欄に内容をfill_in（入力）する処理を書く
         fill_in "タスク名",	with: "task1"
         fill_in "タスク詳細",	with: "sometext"
+        # fill_in "終了期限",	with: "2020-10-14"
+        select '未着手', from: 'ステータス'
       # 3. 「登録する」というvalue（表記文字）のあるボタンをクリックする
       # ここに「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）する処理を書く
         click_on '登録する'
