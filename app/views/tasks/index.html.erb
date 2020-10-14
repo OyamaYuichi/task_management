@@ -2,6 +2,17 @@
 
 <h1>タスク一覧</h1>
 
+<div>
+  <%= form_with(url:tasks_path,local: true,method: :get) do |form| %>
+    <%= form.label :name, t('view.name') %>
+    <%= form.text_field :name, value: params[:name] %>
+    <%= form.label :status, t('view.status') %>
+    <%= form.select :status,Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}, selected: params[:status],include_blank:"選択する" %>
+    <%= form.hidden_field :search, value: 'true' %>
+    <%= form.submit t('view.search') %>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -18,7 +29,7 @@
         <td><%= task.name %></td>
         <td><%= task.detail %></td>
         <td class="date_row"><%= task.deadline %></td>
-        <td><%= task.status %></td>
+        <td><%= task.status_i18n %></td>
         <td><%= link_to t('view.show'), task, class: "show"%></td>
         <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: t('view.destroy message') } %></td>
