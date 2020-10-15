@@ -10,33 +10,52 @@
       </ul>
     </div>
   <% end %>
+<table>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :name %>
+    </td>
+    <td>
+      <%= form.text_field :name %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :detail %>
+    </td>
+    <td>
+      <%= form.text_field :detail%>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :deadline %>
+    </td>
+    <td>
+      <%= form.date_select :deadline ,id: 'deadline' %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :status %>
+    </td>
+    <td>
+      <%= form.select :status, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}), include_blank: '選択してください' %>
+    </td>
+  </tr>
+  <tr class="field last-field">
+    <td class="new-subject">
+      <%= form.label :priority %>
+    </td>
+    <td>
+      <%= form.select :priority, options_for_select(Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]}), include_blank: '選択してください' %>
+    </td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <tr>
+    <p><%= form.submit %></p>
+  </tr>
 
-  <div class="field">
-    <%= form.label :detail %>
-    <%= form.text_field :detail%>
-  </div>
-
-  <div class="field">
-    <%= form.label :deadline %>
-    <%= form.date_select :deadline ,id: 'deadline' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}), include_blank: '選択してください' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.select :priority, options_for_select(Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]}), include_blank: '選択してください' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
+</table>
+

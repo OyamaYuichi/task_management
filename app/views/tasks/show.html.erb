@@ -1,29 +1,31 @@
 <p id="notice"><%= notice %></p>
+<h1>タスク詳細</h1>
+<table class="show-table">
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.name') %></td>
+    <td class="show-content"><%= @task.name %></td>
+  </tr>
 
-<p>
-  <strong><%= t('view.name') %>:</strong>
-  <%= @task.name %>
-</p>
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.detail') %></td>
+    <td class="show-content"><%= @task.detail %></td>
+  </tr>
 
-<p>
-  <strong><%= t('view.detail') %>:</strong>
-  <%= @task.detail %>
-</p>
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.deadline') %></td>
+    <td class="show-content"><%= @task.deadline %></td>
+  </tr>
 
-<p>
-  <strong><%= t('view.deadline') %>:</strong>
-  <%= @task.deadline %>
-</p>
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.status') %></td>
+    <td class="show-content"><%= @task.status_i18n %></td>
+  </tr>
 
-<p>
-  <strong><%= t('view.status') %>:</strong>
-  <%= @task.status_i18n %>
-</p>
-
-<p>
-  <strong><%= t('view.priority') %>:</strong>
-  <%= @task.priority_i18n %>
-</p>
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.priority') %></td>
+    <td class="show-content"><%= @task.priority_i18n %></td>
+  </tr>
+</table>
 
 
 <%= link_to t('view.back'), tasks_path %> |
