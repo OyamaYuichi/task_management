@@ -6,6 +6,10 @@ ja:
         not_yet: 未着手
         in_progress: 着手中
         completed: 完了
+      priority:
+        high: 高
+        middle: 中
+        low: 低
   activerecord:
     errors:
       messages:
@@ -217,6 +221,7 @@ ja:
     detail: タスク詳細
     deadline: 終了期限
     status: ステータス
+    priority: 優先順位
     show: 詳細
     edit: 編集
     destroy: 削除
@@ -225,5 +230,6 @@ ja:
     edit task: タスクを編集
     back: 戻る
     destroy message: 削除してもよろしいですか？
-    error number: 件のエラーがあります。
+    error number: 件
+    error message: のエラーがあります。
 

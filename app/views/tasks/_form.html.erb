@@ -1,7 +1,7 @@
 <%= form_with(model: task, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %><%= t('view.error number') %></h2>
+      <h2><%= pluralize(task.errors.count, t('view.error number')) %><%= t('view.error message') %></h2>
 
       <ul>
       <% task.errors.full_messages.each do |message| %>
@@ -29,6 +29,11 @@
   <div class="field">
     <%= form.label :status %>
     <%= form.select :status, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}), include_blank: '選択してください' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.select :priority, options_for_select(Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]}), include_blank: '選択してください' %>
   </div>
 
   <div class="actions">
