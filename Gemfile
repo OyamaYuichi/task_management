@@ -54,6 +54,7 @@ end
 group :test do
   gem 'webdrivers'
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner'
   # gem 'selenium-webdriver'
   # gem 'chromedriver-helper'
 end
