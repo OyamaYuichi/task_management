@@ -1,3 +1,50 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table{
+  width: 100%;
+  table-layout: fixed;
+  // border-collapse: collapse;
+  // text-overflow: ellipsis;
+}
+thead{
+  border-top: solid 1px gainsboro;
+}
+th{
+  text-align: center;
+  border-right: solid 1px gainsboro;
+}
+tr{
+  border-bottom: solid 1px gainsboro;
+  font-size: large;
+}
+td{
+  border-right: solid 1px gainsboro;
+  padding: 6px;
+  width: 100px;
+}
+.show td{
+  width: 20px;
+}
+.show-td{
+  width: 200px;
+}
+.overflow td{
+  width: 300px;
+}
+.overflow{
+  width: 200px;
+  color: red;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis; /* Safari */
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
+.color-black a{
+  color: #000;
+}
+.color-black a:hover{
+  color: rgb(0, 110, 255);
+}
