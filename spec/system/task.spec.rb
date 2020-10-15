@@ -60,6 +60,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in "タスク詳細",	with: "sometext"
         # fill_in "終了期限",	with: "2020-10-14"
         select '未着手', from: 'ステータス'
+        select '高', from: '優先順位'
       # 3. 「登録する」というvalue（表記文字）のあるボタンをクリックする
       # ここに「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）する処理を書く
         click_on '登録する'
@@ -80,6 +81,18 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[0]).to have_content '2020-10-16'
         expect(task_list[1]).to have_content '2020-10-15'
         expect(task_list[2]).to have_content '2020-10-10'
+        # binding.irb
+      end
+    end
+    context '優先順位でソートするボタンを押した場合' do
+      it '優先順位の昇順で表示される' do
+        visit tasks_path
+        click_on '優先順位でソートする'
+        sleep 0.5
+        task_list = all('.date_priority')
+        expect(task_list[0]).to have_content '高'
+        expect(task_list[1]).to have_content '中'
+        expect(task_list[2]).to have_content '低'
         # binding.irb
       end
     end

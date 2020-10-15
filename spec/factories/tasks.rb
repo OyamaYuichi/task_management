@@ -5,6 +5,7 @@ FactoryBot.define do
     detail { 'test_content' }
     deadline { '2020-10-15' }
     status { 'not_yet' }
+    priority { 'low'}
   end
 
   factory :second_task, class: Task do
@@ -12,6 +13,7 @@ FactoryBot.define do
     detail { 'Factoryで作ったデフォルトのコンテント２' }
     deadline { '2020-10-16' }
     status { 'in_progress' }
+    priority { 'middle'}
   end
 
   factory :third_task, class: Task do
@@ -19,5 +21,6 @@ FactoryBot.define do
     detail { 'Factoryで作ったデフォルトのコンテント3' }
     deadline { '2020-10-10' }
     status { 'completed' }
+    priority { 'high'}
   end
 end
