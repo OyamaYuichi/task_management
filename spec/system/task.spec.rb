@@ -32,7 +32,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         select '完了', from: 'ステータス'
         click_on '検索'
         sleep 1
-        expect(page).to have_content '2020-10-10'
+        expect(page).to have_content '完了'
       end
     end
     context 'タイトルのあいまい検索とステータス検索をした場合' do
@@ -41,7 +41,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         fill_in "タスク名",	with: "task"
         select '完了', from: 'ステータス'
-        expect(page).to have_content '2020-10-10'
+        click_on '検索'
+        expect(page).to have_content 'task'
+        expect(page).to have_content '完了'
       end
     end
   end
@@ -58,9 +60,11 @@ RSpec.describe 'タスク管理機能', type: :system do
       # ここに「タスク詳細」というラベル名の入力欄に内容をfill_in（入力）する処理を書く
         fill_in "タスク名",	with: "task1"
         fill_in "タスク詳細",	with: "sometext"
-        # fill_in "終了期限",	with: "2020-10-14"
-        select '未着手', from: 'ステータス'
-        select '高', from: '優先順位'
+        select "2020",	from: "task_deadline_1i"
+        select "12",	from: "task_deadline_2i"
+        select "8",	from: "task_deadline_3i"
+        select '着手中', from: 'ステータス'
+        select '中', from: '優先順位'
       # 3. 「登録する」というvalue（表記文字）のあるボタンをクリックする
       # ここに「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）する処理を書く
         click_on '登録する'
@@ -69,7 +73,13 @@ RSpec.describe 'タスク管理機能', type: :system do
       # ここにタスク詳細ページに、テストコードで作成したデータがタスク詳細画面にhave_contentされているか（含まれているか）を確認（期待）するコードを書く
         # task = FactoryBot.create(:task, name: 'task1', detail: 'sometext')
         # visit task_path(task)
+        expect(page).to have_content 'task1'
         expect(page).to have_content 'sometext'
+        expect(page).to have_content '2020'
+        expect(page).to have_content '12'
+        expect(page).to have_content '8'
+        expect(page).to have_content '着手中'
+        expect(page).to have_content '中'
       end
     end
     context '終了期限でソートするボタンを押した場合' do
