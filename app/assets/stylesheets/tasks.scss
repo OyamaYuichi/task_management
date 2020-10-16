@@ -9,6 +9,7 @@
   border: solid 1px #337ab7;
   border-radius: 5px;
   padding: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 }
 .new-create a:active{
   color: #FFF;
@@ -20,8 +21,6 @@
   padding: 10px;
 }
 .new-create{
-  // margin-top: 100px;
-  // height: 20px;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -32,19 +31,22 @@
 .search{
   border-top: solid 1px gainsboro;
 }
-
+.td-search p{
+  margin: 0;
+}
 
 @media screen and (min-width: 1040px){
   .td-search{
     padding-top: 10px;
     padding-bottom: 15px;
+    padding-left: 10px;
     width: 42.5%;
   }
   .td-search input{
-    width: 430px;
+    width: 400px;
   }
   input, select{
-    width: 430px;
+    width: 400px;
     height: 35px;
   }
   .td-submit input{
@@ -53,6 +55,7 @@
     color: #FFF;
     border: solid 1px #337ab7;
     border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
   }
   .td-submit input:active{
     width: 150px;
@@ -82,6 +85,7 @@
     color: #FFF;
     border: solid 1px #337ab7;
     border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
   }
   .td-submit input:active{
     width: 100px;
@@ -125,15 +129,17 @@ table{
   width: 100%;
   table-layout: fixed;
   background-color: rgb(252, 252, 252);
-  // border-collapse: collapse;
-  // text-overflow: ellipsis;
 }
 thead{
   border-top: solid 1px gainsboro;
 }
 th{
-  text-align: center;
   border-right: solid 1px gainsboro;
+  padding: 3px;
+}
+th:first-child{
+  border-right: solid 1px gainsboro;
+  border-left: solid 1px gainsboro;
   padding: 3px;
 }
 .tr-main{
@@ -145,11 +151,13 @@ th{
   padding: 6px;
   width: 100px;
 }
+.tr-main td:first-child{
+  border-left: solid 1px gainsboro;
+}
 
 
 .overflow{
   width: 17%;
-  // color: red;
   white-space: nowrap;
   text-overflow: ellipsis;
   -webkit-text-overflow: ellipsis; /* Safari */
@@ -172,12 +180,9 @@ th{
 .link-fence a:hover{
   background-color: #337ab7;
   color: #FFF;
+  text-decoration: none;
 }
 .fence a{
-  // padding-top: 4px;
-  // padding-bottom: 4px;
-  // padding-left: 10px;
-  // padding-right: 10px;
   display: block!important;
 }
 .destroy a:hover{
@@ -194,27 +199,125 @@ th{
 }
 
 .show-subject{
-  border-right: solid 1px gainsboro;
   width: 200px;
   font-weight: bold;
   font-size: 20px;
-  padding: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .show-content{
-  padding: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+  word-break: break-all;
+}
+
+.show-table{
+  margin-top: 50px;
+}
+.show-div{
+  margin-top: 40px;
+}
+.show-link a{
+  margin-top: 20px;
+  border: solid 1px #337ab7;
+  border-radius: 5px;
+  padding: 10px;
   font-size: 20px;
 }
+.show-edit a:hover{
+  margin-top: 20px;
+  border: solid 1px #337ab7;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #337ab7;
+  color: #FFF;
+  text-decoration: none;
+}
+.show-destroy a:hover{
+  margin-top: 20px;
+  border: solid 1px red;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: red;
+  color: #FFF;
+  text-decoration: none;
+}
 
-.field{
-  border-top: solid 1px gainsboro;
+
+.field {
+  // border-top: solid 1px gainsboro;
+  // padding-top: 100px;
 }
 .last-field{
-  border-bottom: solid 1px gainsboro;
+  // border-bottom: solid 1px gainsboro;
+}
+td.new-subject{
+  padding-top: 30px;
 }
 .new-subject{
-  width: 200px;
-  border-right: solid 1px gainsboro;
-
+  width: 400px;
+}
+.new-content input{
+  width: 100%;
+}
+.new-content textarea{
+  width: 100%;
+  height: 400px;
+}
+.new-content select{
+  width: 100%;
+}
+.new-deadline-content select{
+  width: 33%;
+}
+.new-deadline-content{
+  white-space: nowrap;
+}
+.new-submit{
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-
+.show-table{
+  margin-top: 50px;
+}
+.show-div{
+  margin-top: 40px;
+}
+.show-link a{
+  margin-top: 20px;
+  border: solid 1px #337ab7;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+}
+.show-edit a:hover{
+  margin-top: 20px;
+  border: solid 1px #337ab7;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #337ab7;
+  color: #FFF;
+  text-decoration: none;
+}
+.show-destroy a:hover{
+  margin-top: 20px;
+  border: solid 1px red;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: red;
+  color: #FFF;
+  text-decoration: none;
+}
+.show-content{
+  word-break: break-all;
+}

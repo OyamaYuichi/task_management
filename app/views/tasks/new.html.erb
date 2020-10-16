@@ -1,5 +1,14 @@
-<h1><%= t('view.new task') %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
 
-<%= render 'form', task: @task %>
+      <div class="content col-md-8">
+        <%= link_to "＜ 戻る", tasks_path %>
+        <h1><%= t('view.new task') %></h1>
+        <%= render 'form', task: @task %>
+      </div>
 
-<%= link_to t('view.back'), tasks_path %>
+    <div class="col-md-2"></div>
+
+  </div>
+</div>

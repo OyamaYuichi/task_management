@@ -15,7 +15,9 @@
     <td class="new-subject">
       <%= form.label :name %>
     </td>
-    <td>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
       <%= form.text_field :name %>
     </td>
   </tr>
@@ -23,15 +25,19 @@
     <td class="new-subject">
       <%= form.label :detail %>
     </td>
-    <td>
-      <%= form.text_field :detail%>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
+      <%= form.text_area :detail%>
     </td>
   </tr>
   <tr class="field">
     <td class="new-subject">
       <%= form.label :deadline %>
     </td>
-    <td>
+  </tr>
+  <tr class="field">
+    <td class="new-deadline-content">
       <%= form.date_select :deadline ,id: 'deadline' %>
     </td>
   </tr>
@@ -39,7 +45,9 @@
     <td class="new-subject">
       <%= form.label :status %>
     </td>
-    <td>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
       <%= form.select :status, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}), include_blank: '選択してください' %>
     </td>
   </tr>
@@ -47,15 +55,18 @@
     <td class="new-subject">
       <%= form.label :priority %>
     </td>
-    <td>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
       <%= form.select :priority, options_for_select(Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]}), include_blank: '選択してください' %>
     </td>
   </tr>
 
-  <tr>
-    <p><%= form.submit %></p>
+  <tr class="center td-submit">
+    <td class="new-submit"><%= form.submit %></td>
   </tr>
 
 <% end %>
 </table>
+
 
