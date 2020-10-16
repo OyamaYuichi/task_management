@@ -1,5 +1,12 @@
 ---
 ja:
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."
   enums:
     task:
       status:
@@ -232,4 +239,3 @@ ja:
     destroy message: 削除してもよろしいですか？
     error number: 件
     error message: のエラーがあります。
-

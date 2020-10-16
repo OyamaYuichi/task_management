@@ -42,3 +42,18 @@
     float: right;
   }
 }
+
+.pagination>li>a {
+  border: none;
+  color: #337ab7;
+  border-radius: 30px!important;
+}
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+.pagination>li>a:hover {
+  border-radius: 15px;
+  cursor: pointer!important;
+}
+
