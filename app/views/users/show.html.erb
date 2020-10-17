@@ -1,0 +1,8 @@
+<div>
+  <h1><%= @user.name %>のページ</h1>
+  <p>メールアドレス: <%= @user.email %></p>
+</div>
+
+
+<p class="center"><%= link_to '投稿する', new_task_path %></p>
+<p class="center"><%= link_to "ホームに戻る", tasks_path %></p>
