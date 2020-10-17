@@ -6,14 +6,15 @@
 
     <table class="table-search">
       <tr class="search">
-        <%= form_with(url:tasks_path,local: true,method: :get) do |form| %>
+
+        <%= form_with( url:tasks_path, local: true, method: :get ) do |form| %>
           <td class="td-search">
             <p><%= form.label :name, t('view.name') %></p>
             <p><%= form.text_field :name, value: params[:name] %></p>
           </td>
           <td class="td-search">
             <p><%= form.label :status, t('view.status') %></p>
-            <p><%= form.select :status,Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]}, selected: params[:status],include_blank:"選択する" %></p>
+            <p><%= form.select :status,Task.statuses_i18n.invert, selected: params[:status],include_blank:"選択する" %></p>
             <%= form.hidden_field :search, value: 'true' %>
           </td>
           <td class="td-submit center">
@@ -21,6 +22,7 @@
             <%= form.submit t('view.search') %>
           </td>
         <% end %>
+
       </tr>
     </table>
 
