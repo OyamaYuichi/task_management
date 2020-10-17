@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_005739) do
+ActiveRecord::Schema.define(version: 2020_10_15_023941) do
 
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "tasks", force: :cascade do |t|
@@ -19,6 +20,12 @@ ActiveRecord::Schema.define(version: 2020_10_12_005739) do
     t.text "detail", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "deadline", default: "2020-10-17", null: false
+    t.integer "status", null: false
+    t.integer "priority", null: false
+    t.index ["name"], name: "index_tasks_on_name"
+    t.index ["priority"], name: "index_tasks_on_priority"
+    t.index ["status"], name: "index_tasks_on_status"
   end
 
 end

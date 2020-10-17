@@ -1,7 +1,7 @@
 <%= form_with(model: task, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, t('view.error number')) %><%= t('view.error message') %></h2>
 
       <ul>
       <% task.errors.full_messages.each do |message| %>
@@ -10,18 +10,63 @@
       </ul>
     </div>
   <% end %>
+<table>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :name %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
+      <%= form.text_field :name %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :detail %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
+      <%= form.text_area :detail%>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :deadline %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-deadline-content">
+      <%= form.date_select :deadline ,id: 'deadline' %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-subject">
+      <%= form.label :status %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
+      <%= form.select :status, Task.statuses_i18n.invert, include_blank: '選択してください' %>
+    </td>
+  </tr>
+  <tr class="field last-field">
+    <td class="new-subject">
+      <%= form.label :priority %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td class="new-content">
+      <%= form.select :priority, Task.priorities_i18n.invert, include_blank: '選択してください' %>
+    </td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <tr class="center td-submit">
+    <td class="new-submit"><%= form.submit %></td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :detail %>
-    <%= form.text_field :detail%>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
+</table>
+
+

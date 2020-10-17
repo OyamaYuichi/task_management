@@ -40,6 +40,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
@@ -54,6 +57,7 @@ end
 group :test do
   gem 'webdrivers'
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner'
   # gem 'selenium-webdriver'
   # gem 'chromedriver-helper'
 end
@@ -62,3 +66,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails'
+
+gem 'enum_help'
+
+gem 'kaminari'

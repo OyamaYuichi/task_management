@@ -1,16 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+
+    <div class="content col-md-10">
+    <%= link_to "＜戻る", tasks_path %>
+
+<h1>タスク詳細</h1>
 <p id="notice"><%= notice %></p>
+<table class="show-table">
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.name') %></td>
+    <td class="show-content"><%= @task.name %></td>
+  </tr>
 
-<p>
-  <strong><%= t('view.name') %>:</strong>
-  <%= @task.name %>
-</p>
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.detail') %></td>
+    <td class="show-content"><%= @task.detail %></td>
+  </tr>
 
-<p>
-  <strong><%= t('view.detail') %>:</strong>
-  <%= @task.detail %>
-</p>
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.deadline') %></td>
+    <td class="show-content"><%= @task.deadline %></td>
+  </tr>
 
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.status') %></td>
+    <td class="show-content"><%= @task.status_i18n %></td>
+  </tr>
 
-<%= link_to t('view.back'), tasks_path %> |
-<%= link_to t('view.edit'), edit_task_path(@task) %> |
-<%= link_to t('view.destroy'), @task, method: :delete, data: { confirm: t('view.destroy message') } %>
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.priority') %></td>
+    <td class="show-content"><%= @task.priority_i18n %></td>
+  </tr>
+</table>
+
+<div class="center show-div">
+<span class="show-link show-edit"><%= link_to t('view.edit'), edit_task_path(@task) %></span>
+<span>　　　　　　　　　　　　　　　　　　</span>
+<span class="show-link show-destroy"><%= link_to t('view.destroy'), @task, method: :delete, data: { confirm: t('view.destroy message') } %></span>
+</div>
+
+</div>
+
+    <div class="col-md-1"></div>
+  </div>
+</div>
