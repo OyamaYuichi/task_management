@@ -1,22 +1,27 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :show, :destroy]
   def index
-    if params[:sort_expired]
-      @tasks = current_user.tasks.order(deadline: :desc).page(params[:page]).per(10)
-    elsif params[:sort_priority]
-      @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(10)
-    else
-      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(10)
-    end
-
-    if params[:search].present?
-      if params[:name].present? && params[:status].present?
-        @tasks = current_user.tasks.get_by_name(params[:name]).get_by_status(params[:status]).page(params[:page]).per(10)
-      elsif params[:name].present?
-          @tasks = current_user.tasks.get_by_name(params[:name]).page(params[:page]).per(10)
-      elsif params[:status].present?
-          @tasks = current_user.tasks.get_by_status(params[:status]).page(params[:page]).per(10)
+    if logged_in?
+      if params[:sort_expired]
+        @tasks = current_user.tasks.order(deadline: :desc).page(params[:page]).per(10)
+      elsif params[:sort_priority]
+        @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(10)
+      else
+        @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(10)
       end
+
+      if params[:search].present?
+        if params[:name].present? && params[:status].present?
+          @tasks = current_user.tasks.get_by_name(params[:name]).get_by_status(params[:status]).page(params[:page]).per(10)
+        elsif params[:name].present?
+            @tasks = current_user.tasks.get_by_name(params[:name]).page(params[:page]).per(10)
+        elsif params[:status].present?
+            @tasks = current_user.tasks.get_by_status(params[:status]).page(params[:page]).per(10)
+        end
+      end
+    else
+      flash[:notice] = 'ログインしてください'
+      redirect_to new_session_path
     end
   end
 

@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
 
   def new
-    @user = User.new
+    if logged_in?
+      flash[:notice] = '既にアカウントをお持ちです'
+      redirect_to tasks_path
+    end
+      @user = User.new
   end
 
   def create
@@ -28,6 +32,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      redirect_to tasks_path
+    end
   end
 
 
