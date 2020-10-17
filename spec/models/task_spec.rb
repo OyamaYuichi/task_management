@@ -36,19 +36,19 @@ describe 'タスクモデル機能', type: :model do
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
       it 'バリデーションにひっかかる' do
-        task = Task.new(name: '', detail: '失敗テスト')
+        task = Task.new(name: '', detail: '失敗テスト', deadline: "2020-10-17", status: "not_yet", priority: "high")
         expect(task).not_to be_valid
       end
     end
     context 'タスクの詳細が空の場合' do
       it 'バリデーションにひっかかる' do
-        task = Task.new(name: 'test1', detail: '')
+        task = Task.new(name: 'test1', detail: '', deadline: "2020-10-17", status: "not_yet", priority: "high")
         expect(task).not_to be_valid
       end
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(name: 'test1', detail: 'some_text1')
+        task = Task.new(name: 'test1', detail: 'some_text1', deadline: "2020-10-17", status: "not_yet", priority: "high" )
         expect(task).to be_valid
       end
     end
