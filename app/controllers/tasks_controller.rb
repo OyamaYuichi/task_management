@@ -2,20 +2,20 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :show, :destroy]
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order(deadline: :desc).page(params[:page]).per(10)
+      @tasks = current_user.tasks.order(deadline: :desc).page(params[:page]).per(10)
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: :asc).page(params[:page]).per(10)
+      @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(10)
     else
-      @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(10)
+      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(10)
     end
 
     if params[:search].present?
       if params[:name].present? && params[:status].present?
-        @tasks = Task.get_by_name(params[:name]).get_by_status(params[:status]).page(params[:page]).per(10)
+        @tasks = current_user.tasks.get_by_name(params[:name]).get_by_status(params[:status]).page(params[:page]).per(10)
       elsif params[:name].present?
-          @tasks = Task.get_by_name(params[:name]).page(params[:page]).per(10)
+          @tasks = current_user.tasks.get_by_name(params[:name]).page(params[:page]).per(10)
       elsif params[:status].present?
-          @tasks = Task.get_by_status(params[:status]).page(params[:page]).per(10)
+          @tasks = current_user.tasks.get_by_status(params[:status]).page(params[:page]).per(10)
       end
     end
   end
@@ -25,8 +25,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
     else
