@@ -6,10 +6,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def new
-    if logged_in?
-      flash[:notice] = '既にアカウントをお持ちです'
-      redirect_to tasks_path
-    end
       @user = User.new
   end
 
