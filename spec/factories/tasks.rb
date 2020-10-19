@@ -6,6 +6,7 @@ FactoryBot.define do
     deadline { '2020-10-15' }
     status { 'not_yet' }
     priority { 'low'}
+    user_id { 1 }
   end
 
   factory :second_task, class: Task do
@@ -14,6 +15,7 @@ FactoryBot.define do
     deadline { '2020-10-16' }
     status { 'in_progress' }
     priority { 'middle'}
+    user_id { 2 }
   end
 
   factory :third_task, class: Task do
@@ -22,5 +24,6 @@ FactoryBot.define do
     deadline { '2020-10-10' }
     status { 'completed' }
     priority { 'high'}
+    user_id { 3 }
   end
 end
