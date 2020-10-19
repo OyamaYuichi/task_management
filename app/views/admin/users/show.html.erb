@@ -1,8 +1,64 @@
 <div class="container">
   <div class="row">
-    <p class="center" id="notice"><%= notice %></p>
-  <h1><%= @user.name %>のページ</h1>
-  <p>メールアドレス: <%= @user.email %></p>
+    <div class="col-md-1"></div>
+
+    <div class="content col-md-10">
+    <%= link_to "＜戻る", admin_users_path %>
+<p class="center" id="notice"><%= notice %></p>
+<h1><%= @user.name %>さんの登録情報</h1>
+<p id="notice"><%= notice %></p>
+<table class="show-table">
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.user_id') %></td>
+    <td class="show-content"><%= @user.id %></td>
+  </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.user_name') %></td>
+    <td class="show-content"><%= @user.name %></td>
+  </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.user_email') %></td>
+    <td class="show-content"><%= @user.email %></td>
+  </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.user_admin') %></td>
+    <td class="show-content"><%= @user.admin? ? 'あり' : 'なし' %></td>
+  </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.user_create') %></td>
+    <td class="show-content"><%= @user.created_at %></td>
+  </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.user_update') %></td>
+    <td class="show-content"><%= @user.updated_at %></td>
+  </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.user_task') %></td>
+    <td class="show-content"><%= @user.tasks.count %></td>
+  </tr>
+</table>
+
+<div class="center show-div">
+<span class="show-link show-edit"><%= link_to t('view.edit'), edit_admin_user_path(@user.id) %></span>
+<span>　　　　　　　　　　　　　　　　　　</span>
+<span class="show-link show-destroy"><%= link_to t('view.destroy'), [:admin, @user], method: :delete, data: { confirm: t('view.destroy message') } %></span>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+
+  <h1><%= @user.name %>さんのタスク一覧</h1>
 
 <table class="table-main">
   <thead>
@@ -33,11 +89,11 @@
 </table>
 
   <div class="center">
-    <span class="new-create">
-      <%= link_to t('view.new task'), new_task_path %>
-    </span>
     <p><%= paginate @tasks %></p>
   </div>
 
 </div>
+
+    <div class="col-md-1"></div>
+  </div>
 </div>

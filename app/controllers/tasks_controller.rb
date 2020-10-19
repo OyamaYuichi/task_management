@@ -64,7 +64,11 @@ class TasksController < ApplicationController
   private
 
   def set_task
-    @task = current_user.tasks.find(params[:id])
+    if current_user.admin?
+      @task = Task.find(params[:id])
+    else
+      @task = current_user.tasks.find(params[:id])
+    end
   end
 
   def task_params

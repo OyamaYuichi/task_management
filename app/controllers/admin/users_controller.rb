@@ -3,8 +3,8 @@ class Admin::UsersController < ApplicationController
   before_action :require_admin
 
   def index
-    # @users = User.all.includes(:tasks)
-    @users = User.where(admin: false).includes(:tasks)
+    @users = User.all.includes(:tasks)
+    # @users = User.where(admin: false).includes(:tasks)
   end
 
   def new
@@ -21,11 +21,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @tasks = @user.tasks.order(created_at: :desc).page(params[:page]).per(10)
+    @tasks = @user.tasks.order(created_at: :desc).page(params[:page]).per(5)
   end
 
 
   def edit
+    @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def update
