@@ -20,7 +20,7 @@
 
   <tr class="show-tr">
     <td class="show-subject"><%= t('view.deadline') %></td>
-    <td class="show-content"><%= @task.deadline %></td>
+    <td class="show-content"><%= @task.deadline.strftime('%Y年 %m月 %d日') %></td>
   </tr>
 
   <tr class="show-tr">
