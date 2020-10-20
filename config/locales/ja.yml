@@ -239,3 +239,10 @@ ja:
     destroy message: 削除してもよろしいですか？
     error number: 件
     error message: のエラーがあります。
+    user_id: ID
+    user_name: 名前
+    user_email: メールアドレス
+    user_admin: 管理者権限
+    user_create: 登録日時
+    user_update: 更新日時
+    user_task: タスク数
