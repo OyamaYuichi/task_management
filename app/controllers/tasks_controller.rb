@@ -27,6 +27,8 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @label = @task.labelings.build
+    @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
   end
 
   def create
@@ -72,6 +74,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :detail, :deadline, :status, :priority)
+    params.require(:task).permit(:name, :detail, :deadline, :status, :priority, label_ids: [])
   end
 end
