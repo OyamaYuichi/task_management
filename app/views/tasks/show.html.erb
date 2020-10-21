@@ -32,6 +32,15 @@
     <td class="show-subject"><%= t('view.priority') %></td>
     <td class="show-content"><%= @task.priority_i18n %></td>
   </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.label') %></td>
+    <td class="show-content">
+      <% @task.labels.each do |l| %>
+        <span>#<%= l.name %>　</span>
+      <% end %>
+    </td>
+  </tr>
 </table>
 
 <div class="center show-div">
