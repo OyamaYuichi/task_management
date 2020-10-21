@@ -2,13 +2,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :show, :destroy]
   def index
     if logged_in?
+      @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
       if params[:sort_expired]
         @tasks = current_user.tasks.order(deadline: :desc).page(params[:page]).per(10)
       elsif params[:sort_priority]
         @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(10)
       else
         @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(10)
-        @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
       end
 
       if params[:search].present?

@@ -112,9 +112,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_on '終了期限'
         sleep 0.5
         task_list = all('.date_row')
-        expect(task_list[0]).to have_content '2020-10-16'
-        expect(task_list[1]).to have_content '2020-10-15'
-        expect(task_list[2]).to have_content '2020-10-10'
+        expect(task_list[0]).to have_content '2020年 10月 16日'
+        expect(task_list[1]).to have_content '2020年 10月 15日'
+        expect(task_list[2]).to have_content '2020年 10月 10日'
         # binding.irb
       end
     end
