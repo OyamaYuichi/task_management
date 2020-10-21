@@ -8,11 +8,14 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(10)
       else
         @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(10)
+        @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
       end
 
       if params[:search].present?
         if params[:name].present? && params[:status].present?
           @tasks = current_user.tasks.get_by_name(params[:name]).get_by_status(params[:status]).page(params[:page]).per(10)
+        elsif params[:label].present?
+          @tasks = current_user.tasks.get_by_label(params[:label]).page(params[:page]).per(10)
         elsif params[:name].present?
             @tasks = current_user.tasks.get_by_name(params[:name]).page(params[:page]).per(10)
         elsif params[:status].present?

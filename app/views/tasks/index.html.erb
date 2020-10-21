@@ -17,6 +17,11 @@
             <p><%= form.select :status,Task.statuses_i18n.invert, selected: params[:status],include_blank:"選択する" %></p>
             <%= form.hidden_field :search, value: 'true' %>
           </td>
+          <td class="td-search">
+            <p><%= form.label :status, t('view.label') %></p>
+            <p><%= form.select :label, @labels.collect { |p| [p.name, p.id]}, class: "search_label", prompt: '選択する' %></p>
+            <%= form.hidden_field :search, value: 'true' %>
+          </td>
           <td class="td-submit center">
             <br>
             <%= form.submit t('view.search') %>
