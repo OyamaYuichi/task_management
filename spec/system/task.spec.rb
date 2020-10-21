@@ -17,9 +17,16 @@ RSpec.describe 'タスク管理機能', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @admin_user = FactoryBot.create(:admin_user)
+
     @task1 = FactoryBot.create(:task, name: 'task1', user: @user)
     @task2 = FactoryBot.create(:second_task, name: 'task2', user: @user)
     @task3 = FactoryBot.create(:third_task, name: 'task3', user: @user)
+
+    @label1 = FactoryBot.create(:label)
+    @label2 = FactoryBot.create(:second_label)
+
+    @labeling1 = FactoryBot.create(:labeling)
+    @labeling2 = FactoryBot.create(:second_labeling)
 
     user_login
   end
@@ -32,6 +39,15 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
 
   describe '検索機能' do
+    context 'ラベル検索をした場合' do
+      it "ラベルに完全一致するタスクが絞り込まれる" do
+        visit tasks_path
+        select 'A', from: 'label'
+        click_on '検索'
+        expect(page).to have_content 'task1'
+        expect(page).to have_content 'test_content'
+      end
+    end
     context 'タイトルであいまい検索をした場合' do
       it "検索キーワードを含むタスクで絞り込まれる" do
 
@@ -183,6 +199,20 @@ RSpec.describe 'タスク管理機能', type: :system do
         show_btns[1].click
         # @task = Task.find(params[:id])
         expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
+      end
+    end
+    context 'ラベルの付いたタスク詳細画面に遷移した場合' do
+      it 'タスクに付けられているラベルが表示される' do
+
+        # タスク一覧ページに遷移
+        visit tasks_path
+        # binding.pry
+        show_btns = all('.show')
+        show_btns[1].click
+        # @task = Task.find(params[:id])
+        expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
+        expect(page).to have_content 'B'
+        expect(page).not_to have_content 'A'
       end
     end
   end
