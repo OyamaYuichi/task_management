@@ -29,10 +29,15 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
-    @label = @task.labelings.build
-    @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
-    # @labels = Label.all
+    if logged_in?
+      @task = Task.new
+      @label = @task.labelings.build
+      @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
+      # @labels = Label.all
+    else
+      flash[:notice] = 'ログインしてください'
+      redirect_to new_session_path
+    end
   end
 
   def create
