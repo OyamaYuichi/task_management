@@ -1,3 +1,8 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="content col-md-6">
+
 <h1>新規登録</h1>
 <% if @user.errors.any? %>
   <div class="center id="error_explanation">
@@ -8,25 +13,19 @@
   </div>
 <% end %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="content col-md-6">
-
     <%= form_with(model: @user, local: true) do |f| %>
       <p><%= f.label :name %></p>
-      <p><%= f.text_field :name %></p>
+      <p class="new-user"><%= f.text_field :name %></p>
       <p><%= f.label :email %></p>
-      <p><%= f.email_field :email %></p>
+      <p class="new-user"><%= f.email_field :email %></p>
       <p><%= f.label :password %></p>
-      <p><%= f.password_field :password %></p>
+      <p class="new-user"><%= f.password_field :password %></p>
       <p><%= f.label :password_confirmation %></p>
-      <p><%= f.password_field :password_confirmation %></p>
-      <p><%= f.submit "新規登録" %></p>
+      <p class="new-user"><%= f.password_field :password_confirmation %></p>
+      <p class="new-user"><%= f.submit "新規登録" %></p>
     <% end %>
 
-    </div>
+</div>
     <div class="col-md-3"></div>
   </div>
-</div>
-
+  </div>
