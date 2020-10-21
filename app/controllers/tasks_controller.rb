@@ -29,6 +29,7 @@ class TasksController < ApplicationController
     @task = Task.new
     @label = @task.labelings.build
     @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
+    # @labels = Label.all
   end
 
   def create
@@ -42,6 +43,7 @@ class TasksController < ApplicationController
 
 
   def edit
+    @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
   end
 
   def update

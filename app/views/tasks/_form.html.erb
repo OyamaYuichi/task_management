@@ -69,8 +69,10 @@
   <tr class="field">
     <td>
       <% @labels.each do |label| %>
-        <%= label.name %>
-        <%= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?,  disabled: label[:disabled], include_hidden: false }, label[:id] %>
+        <span class="form-label">
+          <%= label.name %>
+          <%= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?,  disabled: label[:disabled], include_hidden: false }, label[:id] %>
+        </span>
       <% end %>
     </td>
   </tr>

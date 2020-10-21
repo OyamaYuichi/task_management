@@ -6,7 +6,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
 
   has_many :tasks, dependent: :destroy
-
+  has_many :labels, dependent: :destroy
+  
   before_destroy :destroy_action
   before_update :update_action
 

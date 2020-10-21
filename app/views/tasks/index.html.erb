@@ -58,6 +58,7 @@
     <div class="center">
       <span class="new-create">
         <%= link_to t('view.new task'), new_task_path %>
+        <%= link_to '新規ラベル作成', new_label_path %>
       </span>
       <p><%= paginate @tasks %></p>
     </div>

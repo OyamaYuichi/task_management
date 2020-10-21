@@ -36,7 +36,7 @@ end
 
 5.times do |n|
   Label.create!(
-    name: Faker::Lorem.word,
+    name: Faker::Job.key_skill,
     user_id: rand(1..10)
   )
 end
