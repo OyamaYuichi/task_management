@@ -6,10 +6,10 @@ RSpec.describe 'ラベル機能', type: :system, js: true do
     @task = FactoryBot.create(:task, name: 'task', deadline: DateTime.now, status: 'in_progress', priority: 'high', user_id: @user.id)
     visit root_path
     # binding.pry
-    click_on 'ログイン'
+    click_link 'ログイン'
     fill_in 'session[email]', with: 'user@sample.com'
     fill_in 'session[password]', with: "useruser"
-    click_on 'ログイン'
+    click_button 'ログイン'
   end
 
   describe 'ラベル機能' do
@@ -37,13 +37,14 @@ RSpec.describe 'ラベル機能', type: :system, js: true do
       it 'ラベルを作成でき、タスク作成画面に表示される' do
         visit tasks_path
         click_on '新規ラベル作成'
+        sleep 1
         fill_in 'ラベル名', with: "ラベル１"
         click_on '登録'
         expect(page).to have_content '新しいラベルを作成しました'
         # expect(page).to have_current_path user_path(@user.id)
         # binding.pry
         new_create = all('.new-create')
-        new_create[0].click
+        new_create[1].click
         # label_list = all('#task_label_ids')
         expect(page).to have_content 'ラベル１'
       end
