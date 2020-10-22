@@ -26,4 +26,18 @@ FactoryBot.define do
     priority { 'high'}
     user
   end
+
+  factory :test_task, class: Task do
+    name { 'ラベルつけたい' }
+    detail { 'どうやってラベルつけるの' }
+    deadline { '2020-10-10' }
+    status { 'completed' }
+    priority { 'high'}
+    user
+    after(:build) do |task|
+      # user = create(:user2)
+      label = create(:label, name: 'label_test', user_id: 10)
+      task.labelings << build(:test_labeling, task_id: task.id, label_id: label.id)
+    end
+  end
 end
