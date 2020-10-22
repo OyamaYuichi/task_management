@@ -23,7 +23,7 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
         fill_in "メールアドレス",	with: "user1@dic.com"
         fill_in "パスワード",	with: "user1user1"
         fill_in "確認用パスワード",	with: "user1user1"
-        click_on '新規登録'
+        click_button '新規登録'
         expect(page).to have_content 'user1'
         expect(page).to have_content 'user1@dic.com'
       end
@@ -55,7 +55,8 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
     context '一般ユーザでログインしている状態' do
       it '自分の詳細画面（マイページ）に飛べること' do
         visit tasks_path
-        click_link 'Profile'
+        # binding.pry
+        click_link @user.name
 
         expect(current_path).to eq user_path(1)
       end
@@ -66,7 +67,7 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
       end
 
       it 'ログアウトができること' do
-        click_link 'Logout'
+        click_link 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
         expect(current_path).to eq new_session_path
       end
@@ -90,7 +91,7 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
     context '管理者でログインしている状態' do
       before do
         admin_user_login
-        click_link 'user_index'
+        click_link 'ユーザー'
       end
 
       it '管理ユーザは管理画面にアクセスできること' do

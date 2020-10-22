@@ -3,6 +3,7 @@ ja:
     models:
       task: タスク
       user: ユーザー
+      label: ラベル
     attributes:
       task:
         name: タスク名
@@ -18,3 +19,5 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+      label:
+        name: ラベル

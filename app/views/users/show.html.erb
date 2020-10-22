@@ -21,7 +21,7 @@
     <tr class="tr-main">
       <td class="overflow"><%= task.name %></td>
       <td class="overflow"><%= task.detail %></td>
-      <td class="date_row"><%= task.deadline %></td>
+      <td class="date_row"><%= task.deadline.strftime('%Y年 %m月 %d日') %></td>
       <td><%= task.status_i18n %></td>
       <td class="date_priority"><%= task.priority_i18n %></td>
       <td class="link-fence center"><%= link_to t('view.show'), task, class: "show"%></td>
@@ -35,6 +35,7 @@
   <div class="center">
     <span class="new-create">
       <%= link_to t('view.new task'), new_task_path %>
+      <%= link_to '新規ラベル作成', new_label_path %>
     </span>
     <p><%= paginate @tasks %></p>
   </div>

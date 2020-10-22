@@ -1,18 +1,39 @@
-<h1>Log in</h1>
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-3"></div>
     <div class="content col-md-6">
 
+    <h1>ログイン</h1>
+
     <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-      <%= f.label :メールアドレス %>
-      <%= f.email_field :email %>
-      <%= f.label :パスワード %>
-      <%= f.password_field :password %>
-      <%= f.submit "ログイン" %>
+    <table>
+      <tr class="field">
+        <td class="new-subject">
+          <%= f.label :メールアドレス %>
+        </td>
+      </tr>
+      <tr class="field">
+        <td class="new-content">
+          <%= f.email_field :email %>
+        </td>
+      </tr>
+      <tr class="field">
+        <td class="new-subject">
+          <%= f.label :パスワード %>
+        </td>
+      </tr>
+      <tr class="field">
+        <td class="new-content">
+          <%= f.password_field :password %>
+        </td>
+      </tr>
+      <tr class="center td-submit">
+        <td class="new-submit"><%= f.submit "ログイン" %></td>
+      </tr>
+
+    </table>
     <% end %>
+
 
     </div>
     <div class="col-md-3"></div>

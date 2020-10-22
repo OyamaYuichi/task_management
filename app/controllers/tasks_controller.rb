@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :show, :destroy]
   def index
     if logged_in?
+      @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
       if params[:sort_expired]
         @tasks = current_user.tasks.order(deadline: :desc).page(params[:page]).per(10)
       elsif params[:sort_priority]
@@ -13,6 +14,8 @@ class TasksController < ApplicationController
       if params[:search].present?
         if params[:name].present? && params[:status].present?
           @tasks = current_user.tasks.get_by_name(params[:name]).get_by_status(params[:status]).page(params[:page]).per(10)
+        elsif params[:label].present?
+          @tasks = current_user.tasks.get_by_label(params[:label]).page(params[:page]).per(10)
         elsif params[:name].present?
             @tasks = current_user.tasks.get_by_name(params[:name]).page(params[:page]).per(10)
         elsif params[:status].present?
@@ -26,7 +29,15 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    if logged_in?
+      @task = Task.new
+      @label = @task.labelings.build
+      @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
+      # @labels = Label.all
+    else
+      flash[:notice] = 'ログインしてください'
+      redirect_to new_session_path
+    end
   end
 
   def create
@@ -40,6 +51,7 @@ class TasksController < ApplicationController
 
 
   def edit
+    @labels = Label.where(user_id: nil).or(Label.where(user_id: current_user.id))
   end
 
   def update
@@ -72,6 +84,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :detail, :deadline, :status, :priority)
+    params.require(:task).permit(:name, :detail, :deadline, :status, :priority, label_ids: [])
   end
 end

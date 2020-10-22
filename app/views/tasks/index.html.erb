@@ -17,6 +17,11 @@
             <p><%= form.select :status,Task.statuses_i18n.invert, selected: params[:status],include_blank:"選択する" %></p>
             <%= form.hidden_field :search, value: 'true' %>
           </td>
+          <td class="td-search">
+            <p><%= form.label :status, t('view.label') %></p>
+            <p><%= form.select :label, @labels.collect { |p| [p.name, p.id]}, class: "search_label", prompt: '選択する' %></p>
+            <%= form.hidden_field :search, value: 'true' %>
+          </td>
           <td class="td-submit center">
             <br>
             <%= form.submit t('view.search') %>
@@ -44,7 +49,7 @@
           <tr class="tr-main">
             <td class="overflow"><%= task.name %></td>
             <td class="overflow"><%= task.detail %></td>
-            <td class="date_row"><%= task.deadline %></td>
+            <td class="date_row"><%= task.deadline.strftime('%Y年 %m月 %d日') %></td>
             <td><%= task.status_i18n %></td>
             <td class="date_priority"><%= task.priority_i18n %></td>
             <td class="link-fence center"><%= link_to t('view.show'), task, class: "show"%></td>
@@ -57,7 +62,8 @@
 
     <div class="center">
       <span class="new-create">
-        <%= link_to t('view.new task'), new_task_path %>
+        <%= link_to t('view.new task'), new_task_path, class: 'new-create' %>
+        <%= link_to '新規ラベル作成', new_label_path %>
       </span>
       <p><%= paginate @tasks %></p>
     </div>

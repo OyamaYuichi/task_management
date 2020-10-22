@@ -61,6 +61,21 @@
       <%= form.select :priority, Task.priorities_i18n.invert, include_blank: '選択してください' %>
     </td>
   </tr>
+  <tr class="field last-field">
+    <td class="new-subject">
+      <%= form.label :ラベル %>
+    </td>
+  </tr>
+  <tr class="field">
+    <td>
+      <% @labels.each do |label| %>
+        <span class="form-label">
+          <%= label.name %>
+          <%= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?,  disabled: label[:disabled], include_hidden: false }, label[:id] %>
+        </span>
+      <% end %>
+    </td>
+  </tr>
 
   <tr class="center td-submit">
     <td class="new-submit"><%= form.submit %></td>

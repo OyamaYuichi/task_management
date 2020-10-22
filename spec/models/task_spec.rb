@@ -4,10 +4,12 @@ describe 'タスクモデル機能', type: :model do
   describe '検索機能' do
     # 必要に応じて、テストデータの内容を変更して構わない
     before do
-      @user = FactoryBot.create(:user)
+      @user = FactoryBot.create(:user2, id: 10)
+      # @admin_user = FactoryBot.create(:admin_user)
       @task1 = FactoryBot.create(:task, name: 'sample1', user: @user )
       @task2 = FactoryBot.create(:second_task, name: "sample2", user: @user)
       @task3 = FactoryBot.create(:third_task, name: "sample3", user: @user)
+
     end
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
@@ -21,9 +23,24 @@ describe 'タスクモデル機能', type: :model do
     end
     context 'scopeメソッドでステータス検索をした場合' do
       it "ステータスに完全一致するタスクが絞り込まれる" do
+
         # ここに内容を記載する
         expect(Task.get_by_status('completed')).to include(@task3)
         expect(Task.get_by_status('completed').count).to eq 1
+      end
+    end
+    context 'scopeメソッドでラベル検索をした場合' do
+      it "ラベルに完全一致するタスクが絞り込まれる" do
+        # ここに内容を記載する
+        # @label1 = FactoryBot.create(:label, name: 'label_test', user_id: 10)
+
+        # @labeling1 = FactoryBot.create(:labeling, task_id: 7, label_id: 4)
+
+        @task4 = FactoryBot.create(:test_task, name: "sample4", user: @user)
+        # ラベルの名前じゃなくてラベルのiDで検索するmodel/task.rbを見れば、
+        # get_by_labelの引数がlabelingから検索するときのlabel_idとして使われているのがわかる。
+        expect(Task.get_by_label(1)).to include(@task4)
+        expect(Task.get_by_label(1).count).to eq 1
       end
     end
     context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do

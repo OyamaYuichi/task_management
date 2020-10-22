@@ -43,13 +43,13 @@
     padding-top: 10px;
     padding-bottom: 15px;
     padding-left: 10px;
-    width: 42.5%;
+    width: 28%;
   }
   .td-search input{
-    width: 400px;
+    width: 200px;
   }
   input, select{
-    width: 400px;
+    width: 200px;
     height: 35px;
   }
   .td-submit input{
@@ -73,13 +73,13 @@
   .td-search{
     padding-top: 10px;
     padding-bottom: 15px;
-    width: 40%;
+    width: 28%;
   }
   .td-search input{
-    width: 200px;
+    width: 150px;
   }
   input, select{
-    width: 200px;
+    width: 150px;
     height: 35px;
   }
   .td-submit input{
@@ -102,17 +102,17 @@
   .td-search{
     padding-top: 10px;
     padding-bottom: 15px;
-    width: 38%;
+    width: 18%;
   }
   .td-search input{
-    width: 150px;
+    width: 100px;
   }
   input, select{
-    width: 100px;
+    width: 80px;
     height: 35px;
   }
   .td-submit input{
-    width: 100px;
+    width: 80px;
     background-color: #337ab7;
     color: #FFF;
     border: solid 1px #337ab7;
@@ -224,6 +224,7 @@ th:first-child{
 }
 .show-div{
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 .show-link a{
   margin-top: 20px;
@@ -317,3 +318,9 @@ td.new-subject{
 .show-content{
   word-break: break-all;
 }
+.form-label input{
+  width: 20px;
+  height: 12px;
+  // margin-left: 10px;
+}
+

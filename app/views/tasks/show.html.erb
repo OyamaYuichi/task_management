@@ -20,7 +20,7 @@
 
   <tr class="show-tr">
     <td class="show-subject"><%= t('view.deadline') %></td>
-    <td class="show-content"><%= @task.deadline %></td>
+    <td class="show-content"><%= @task.deadline.strftime('%Y年 %m月 %d日') %></td>
   </tr>
 
   <tr class="show-tr">
@@ -31,6 +31,15 @@
   <tr class="show-tr">
     <td class="show-subject"><%= t('view.priority') %></td>
     <td class="show-content"><%= @task.priority_i18n %></td>
+  </tr>
+
+  <tr class="show-tr">
+    <td class="show-subject"><%= t('view.label') %></td>
+    <td class="show-content">
+      <% @task.labels.each do |l| %>
+        <span>#<%= l.name %>　</span>
+      <% end %>
+    </td>
   </tr>
 </table>
 

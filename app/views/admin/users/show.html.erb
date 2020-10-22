@@ -30,12 +30,12 @@
 
   <tr class="show-tr">
     <td class="show-subject"><%= t('view.user_create') %></td>
-    <td class="show-content"><%= @user.created_at %></td>
+    <td class="show-content"><%= @user.created_at.strftime('%Y年 %m月 %d日') %></td>
   </tr>
 
   <tr class="show-tr">
     <td class="show-subject"><%= t('view.user_update') %></td>
-    <td class="show-content"><%= @user.updated_at %></td>
+    <td class="show-content"><%= @user.updated_at.strftime('%Y年 %m月 %d日') %></td>
   </tr>
 
   <tr class="show-tr">
@@ -77,7 +77,7 @@
     <tr class="tr-main">
       <td class="overflow"><%= task.name %></td>
       <td class="overflow"><%= task.detail %></td>
-      <td class="date_row"><%= task.deadline %></td>
+      <td class="date_row"><%= task.deadline.strftime('%Y年 %m月 %d日') %></td>
       <td><%= task.status_i18n %></td>
       <td class="date_priority"><%= task.priority_i18n %></td>
       <td class="link-fence center"><%= link_to t('view.show'), task, class: "show"%></td>

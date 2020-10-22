@@ -9,6 +9,9 @@ class Task < ApplicationRecord
 
   scope :get_by_name, -> (name) { where('name LIKE ?', "%#{name}%")}
   scope :get_by_status, -> (status) { where(status: status)}
+  scope :get_by_label, -> (label) { where(id: Labeling.where(label_id: label).pluck(:task_id))}
 
   belongs_to :user
+  has_many :labelings, dependent: :destroy
+  has_many :labels, through: :labelings, source: :label
 end
